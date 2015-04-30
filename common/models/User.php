@@ -23,6 +23,9 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    public $first_name;
+    public $last_name;
+    
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
@@ -50,6 +53,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['first_name', 'last_name'], 'string'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
